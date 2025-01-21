@@ -5,7 +5,7 @@ pipeline {
         stage('Deploy To Kubernetes') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-2', contextName: '', credentialsId: 'kubertoken', namespace: 'webapps', serverUrl: 'https://CE107284CAD324E9F59CACB44E005826.gr7.ap-southeast-1.eks.amazonaws.com']]) {
-                    sh "kubectl apply -f deployment-service.yml"
+                    sh"kubectl apply -f deployment-service.yml"
                     
                 }
             }
@@ -14,7 +14,7 @@ pipeline {
         stage('verify Deployment') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-2', contextName: '', credentialsId: 'kubertoken', namespace: 'webapps', serverUrl: 'https://CE107284CAD324E9F59CACB44E005826.gr7.ap-southeast-1.eks.amazonaws.com']]) {
-                    sh "kubectl get svc -n webapps"
+                    sh"kubectl get svc -n webapps"
                 }
             }
         }
